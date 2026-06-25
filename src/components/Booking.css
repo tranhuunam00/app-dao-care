@@ -1,0 +1,480 @@
+/* ==========================================================================
+   Booking Stepper Component Styles
+   ========================================================================== */
+
+.booking-pane {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.booking-header {
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 16px;
+}
+
+.booking-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+}
+
+.booking-subtitle {
+  font-size: 0.775rem;
+  color: var(--color-text-muted);
+  margin-top: 4px;
+}
+
+/* ==========================================================================
+   Stepper Navigation Header
+   ========================================================================== */
+.booking-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.step-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.step-badge {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--color-bg);
+  color: var(--color-text-light);
+  font-weight: 700;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+  border: 1px solid var(--color-border);
+}
+
+.step-badge.active {
+  background-color: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 8px rgba(5, 150, 105, 0.15);
+}
+
+.step-badge.completed {
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+  border-color: var(--color-primary-border);
+}
+
+.step-label {
+  font-size: 0.775rem;
+  font-weight: 500;
+  color: var(--color-text-light);
+  display: none; /* Hide labels on mobile to prevent squishing */
+}
+
+.step-label.active {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.step-label.completed {
+  color: var(--color-primary-hover);
+  font-weight: 600;
+}
+
+.step-line {
+  flex: 1;
+  height: 2px;
+  background-color: var(--color-border);
+  margin: 0 8px;
+  transition: background-color 0.25s ease;
+}
+
+.step-line.completed {
+  background-color: var(--color-primary-border);
+}
+
+/* ==========================================================================
+   Step Contents Base Layout
+   ========================================================================== */
+.step-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.step-heading {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.options-column {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Radio button hidden card pattern */
+.option-card {
+  display: flex;
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.option-card.selected {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary-light);
+  border-width: 2px;
+  padding: 15px; /* Offset padding to prevent size jump from border-width change */
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.04);
+}
+
+.hidden-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.option-details {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.option-title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+}
+
+.option-desc {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  margin-top: 4px;
+  line-height: 1.35;
+}
+
+.badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 99px;
+  margin-top: 8px;
+  width: max-content;
+}
+
+.badge-green { background-color: white; border: 1px solid var(--color-primary-border); color: var(--color-primary); }
+.badge-blue { background-color: white; border: 1px solid var(--color-blue-border); color: var(--color-blue); }
+
+.price-tag {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+}
+
+.align-center {
+  align-items: center;
+}
+
+/* ==========================================================================
+   Step 2 & 3 Sub-sections
+   ========================================================================== */
+.step-sub-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.section-label {
+  font-size: 0.775rem;
+  color: var(--color-text-light);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.grid-2-col {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.selector-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  padding: 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.selector-badge.selected {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+/* Avatar holder in step 3 */
+.avatar-holder {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--color-border);
+  color: var(--color-text-muted);
+  font-weight: 700;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.green-avatar {
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+/* Date scroll horizontal bar */
+.date-scroll-nav {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.date-item {
+  flex-shrink: 0;
+  width: 60px;
+  padding: 12px 6px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.date-item.selected {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+  border-width: 2px;
+  padding: 11px 5px; /* Offset border width */
+}
+
+.day-name {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--color-text-light);
+  text-transform: uppercase;
+}
+
+.day-num {
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: var(--color-text-main);
+  margin: 2px 0;
+}
+
+.date-item.selected .day-name, 
+.date-item.selected .day-num,
+.date-item.selected .month-name {
+  color: var(--color-primary);
+}
+
+.month-name {
+  font-size: 0.55rem;
+  font-weight: 700;
+  color: var(--color-text-light);
+}
+
+/* Time slots grid */
+.time-slots-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.time-slot {
+  padding: 8px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.time-slot.selected {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+  border-width: 2px;
+  padding: 7px; /* Offset border width */
+}
+
+.time-text {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+}
+
+.slot-status {
+  font-size: 0.55rem;
+  color: var(--color-text-light);
+  margin-top: 1px;
+}
+
+.time-slot.selected .time-text,
+.time-slot.selected .slot-status {
+  color: var(--color-primary);
+}
+
+.time-slot.disabled {
+  background-color: var(--color-bg);
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.line-through {
+  text-decoration: line-through;
+}
+
+/* ==========================================================================
+   Step 4 Review Tóm tắt
+   ========================================================================== */
+.summary-box {
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.summary-box-title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 8px;
+}
+
+.summary-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.775rem;
+}
+
+.row-label {
+  color: var(--color-text-muted);
+}
+
+.row-value {
+  font-weight: 700;
+  color: var(--color-text-main);
+  text-align: right;
+}
+
+.highlight-value {
+  color: var(--color-primary);
+}
+
+.summary-symptoms {
+  border-top: 1px solid var(--color-border);
+  padding-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.symptoms-label {
+  font-size: 0.775rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.symptoms-input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--color-border);
+  font-size: 0.775rem;
+  resize: none;
+  background-color: white;
+}
+
+.symptoms-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+/* Alert info */
+.info-alert {
+  background-color: var(--color-primary-light);
+  border: 1px solid var(--color-primary-border);
+  padding: 10px;
+  border-radius: 12px;
+}
+
+.info-icon {
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.info-text {
+  font-size: 0.65rem;
+  color: var(--color-primary-hover);
+  line-height: 1.35;
+}
+
+.stepper-actions {
+  margin-top: 12px;
+}
+
+.confirm-btn {
+  background-color: #059669;
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+@media (min-width: 768px) {
+  .step-label {
+    display: inline; /* Show step labels on desktop */
+  }
+
+  .step-line {
+    margin: 0 16px;
+  }
+}

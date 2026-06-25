@@ -1,0 +1,277 @@
+/* ==========================================================================
+   Health Notebook & SVG Charts Styles
+   ========================================================================== */
+
+.health-pane {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.health-header {
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 16px;
+}
+
+.health-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+}
+
+.health-subtitle {
+  font-size: 0.775rem;
+  color: var(--color-text-muted);
+  margin-top: 4px;
+}
+
+/* ==========================================================================
+   Metrics Grid Selectors
+   ========================================================================== */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.metric-select-btn {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  padding: 16px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.metric-select-btn.selected {
+  border-color: var(--color-primary);
+  border-width: 2px;
+  padding: 15px; /* Offset border size */
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.04);
+}
+
+.selected-dot-indicator {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: white;
+  background-color: var(--color-rose);
+  padding: 1px 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.m-label {
+  font-size: 0.775rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.metric-select-btn.selected .m-label {
+  color: var(--color-primary-hover);
+}
+
+.m-value {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-text-main);
+}
+
+.m-unit {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  font-weight: 400;
+}
+
+.m-date {
+  font-size: 0.65rem;
+  color: var(--color-text-light);
+  margin-top: 2px;
+}
+
+/* ==========================================================================
+   SVG Charts Styles
+   ========================================================================== */
+.chart-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.chart-desc-text {
+  font-size: 0.725rem;
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
+.chart-time-select {
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 8px;
+  color: var(--color-text-muted);
+}
+
+.chart-time-select:focus {
+  outline: none;
+}
+
+.svg-chart-container {
+  background-color: #fafbfd;
+  border: 1px solid rgba(226, 232, 240, 0.6);
+  border-radius: 16px;
+  padding: 12px;
+  position: relative;
+  width: 100%;
+}
+
+.chart-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.axis-scale-text {
+  font-size: 9px;
+  font-weight: 700;
+  fill: var(--color-text-light);
+}
+
+.axis-date-text {
+  font-size: 9px;
+  font-weight: 700;
+  fill: var(--color-text-light);
+  text-anchor: middle;
+}
+
+.chart-legend {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+}
+
+.legend-dot {
+  width: 12px;
+  height: 6px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+.rose-dot { background-color: var(--color-rose); }
+.blue-dot { background-color: var(--color-blue); }
+.green-dot { background-color: var(--color-primary); }
+
+.text-rose { color: var(--color-rose); }
+.text-blue { color: var(--color-blue); }
+.text-green { color: var(--color-primary); }
+.text-capitalize { text-transform: capitalize; }
+
+/* Add entry button */
+.add-log-btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.1);
+}
+
+/* ==========================================================================
+   Medication Reminders Layout
+   ========================================================================== */
+.meds-reminders-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.meds-list-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.med-reminder-row {
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  padding: 12px 16px;
+  transition: all 0.2s ease;
+}
+
+.med-pill-box {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.med-reminder-name {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+}
+
+.med-reminder-purpose {
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  margin-top: 1px;
+}
+
+/* Action button for checking pills taken */
+.med-action-btn {
+  padding: 6px 14px;
+  border-radius: 99px;
+  font-size: 0.725rem;
+  font-weight: 700;
+  transition: all 0.2s ease;
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.med-action-btn.untaken {
+  background-color: var(--color-border);
+  color: var(--color-text-muted);
+}
+
+.med-action-btn.untaken:hover {
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.med-action-btn.taken {
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary-border);
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+@media (min-width: 768px) {
+  .metrics-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .metric-select-btn {
+    height: 110px;
+  }
+}

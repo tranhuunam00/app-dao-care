@@ -1,0 +1,606 @@
+/* ==========================================================================
+   Dashboard Pane & Layout Elements Styles
+   ========================================================================== */
+
+.dashboard-pane {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Base Card Style */
+.card {
+  background-color: var(--color-surface);
+  border-radius: 24px;
+  border: 1px solid var(--color-border);
+  padding: 24px;
+}
+
+.shadow-card {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-align {
+  display: flex;
+  align-items: center;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gap-1 { gap: 4px; }
+.gap-2 { gap: 8px; }
+.flex-gap-3 { 
+  display: flex;
+  gap: 12px; 
+}
+
+/* ==========================================================================
+   Profile Banner Component
+   ========================================================================== */
+.profile-banner {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+  border-radius: 32px;
+  padding: 24px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(5, 150, 105, 0.15);
+}
+
+.banner-bg-graphic {
+  position: absolute;
+  right: -20px;
+  bottom: -20px;
+  opacity: 0.12;
+  transform: rotate(-15deg);
+  pointer-events: none;
+}
+
+.banner-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.banner-tag {
+  background-color: rgba(255, 255, 255, 0.18);
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 99px;
+  width: max-content;
+  letter-spacing: 0.8px;
+}
+
+.banner-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  margin-top: 8px;
+}
+
+.banner-mrn {
+  font-size: 0.875rem;
+  color: var(--color-primary-light);
+  margin-top: 4px;
+}
+
+.banner-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 12px;
+  font-size: 0.75rem;
+  color: var(--color-primary-light);
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* QR Checkin Card inside banner */
+.qr-checkin-card {
+  background-color: var(--color-surface);
+  color: var(--color-text-main);
+  padding: 12px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+  max-width: 320px;
+  align-self: flex-start;
+}
+
+.qr-box {
+  background-color: var(--color-bg);
+  padding: 8px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-main);
+}
+
+.qr-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.qr-tag {
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: var(--color-text-light);
+  letter-spacing: 0.5px;
+}
+
+.qr-title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  margin: 1px 0;
+}
+
+.qr-desc {
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+}
+
+/* ==========================================================================
+   Quick Navigation Buttons
+   ========================================================================== */
+.quick-nav-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.quick-btn {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  padding: 16px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 120px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+}
+
+.quick-btn:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 6px 16px rgba(5, 150, 105, 0.05);
+  transform: translateY(-2px);
+}
+
+.icon-wrapper {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.green-bg { background-color: var(--color-primary-light); color: var(--color-primary); }
+.blue-bg { background-color: var(--color-blue-bg); color: var(--color-blue); }
+.rose-bg { background-color: var(--color-rose-bg); color: var(--color-rose); }
+.amber-bg { background-color: var(--color-amber-bg); color: var(--color-amber); }
+
+.quick-btn-info {
+  margin-top: auto;
+}
+
+.quick-btn-title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+}
+
+.quick-btn-desc {
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
+/* ==========================================================================
+   Upcoming Appointment Card
+   ========================================================================== */
+.appointment-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+}
+
+.live-dot {
+  width: 10px;
+  height: 10px;
+  background-color: var(--color-primary);
+  border-radius: 50%;
+}
+
+.status-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 99px;
+}
+
+.green-badge {
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.amber-badge {
+  background-color: var(--color-amber-bg);
+  color: var(--color-amber);
+}
+
+.appointment-body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+  background-color: var(--color-bg);
+  border-radius: 16px;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.doctor-profile-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.doctor-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: var(--color-border);
+  color: var(--color-text-muted);
+  font-weight: 700;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.doctor-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.doctor-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+}
+
+.doctor-spec {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  margin-top: 1px;
+}
+
+.doctor-loc {
+  font-size: 0.7rem;
+  color: var(--color-text-light);
+  margin-top: 4px;
+}
+
+.appointment-time-column {
+  border-top: 1px dashed var(--color-border);
+  padding-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.time-label {
+  font-size: 0.7rem;
+  color: var(--color-text-light);
+  font-weight: 500;
+}
+
+.time-row {
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+}
+
+.primary-text {
+  color: var(--color-primary);
+}
+
+/* Button UI Components */
+.btn {
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 0.825rem;
+  font-weight: 700;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.btn-muted {
+  background-color: var(--color-bg);
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+}
+
+.btn-muted:hover {
+  background-color: var(--color-border);
+  color: var(--color-text-main);
+}
+
+.btn-dark {
+  background-color: var(--color-text-main);
+  color: white;
+}
+
+.btn-dark:hover {
+  background-color: #0f172a;
+}
+
+/* ==========================================================================
+   Vitals Card Layout
+   ========================================================================== */
+.vitals-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.vital-item {
+  padding: 16px;
+  border-radius: 20px;
+  border: 1px solid transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.rose-bg-opacity { background-color: var(--color-rose-bg); border-color: var(--color-rose-border); }
+.blue-bg-opacity { background-color: var(--color-blue-bg); border-color: var(--color-blue-border); }
+.amber-bg-opacity { background-color: var(--color-amber-bg); border-color: var(--color-amber-border); }
+.green-bg-opacity { background-color: var(--color-primary-light); border-color: var(--color-primary-border); }
+
+.rose-text { color: var(--color-rose); }
+.blue-text { color: var(--color-blue); }
+.amber-text { color: var(--color-amber); }
+
+.vital-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.vital-value {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--color-text-main);
+  margin-top: 4px;
+}
+
+.vital-unit {
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  font-weight: 400;
+}
+
+.vital-status {
+  font-size: 0.65rem;
+  font-weight: 700;
+  margin-top: 8px;
+  padding: 2px 8px;
+  border-radius: 99px;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.green-tag {
+  color: var(--color-primary);
+}
+
+.link-btn {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.link-btn:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   Ticket Modal Design
+   ========================================================================== */
+.ticket-modal-content {
+  background-color: var(--color-surface);
+  border-radius: 28px;
+  max-width: 380px;
+  width: 100%;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  animation: scaleIn 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.ticket-header {
+  background-color: var(--color-primary);
+  color: white;
+  padding: 24px;
+  text-align: center;
+  position: relative;
+}
+
+.close-ticket-btn {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  color: rgba(255, 255, 255, 0.8);
+  transition: color 0.2s;
+}
+
+.close-ticket-btn:hover {
+  color: white;
+}
+
+.ticket-header-tag {
+  font-size: 0.6rem;
+  font-weight: 700;
+  background-color: var(--color-primary-hover);
+  padding: 2px 8px;
+  border-radius: 4px;
+  letter-spacing: 1px;
+}
+
+.ticket-header-title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-top: 8px;
+}
+
+.ticket-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ticket-qr-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: 1px dashed var(--color-border);
+  padding-bottom: 20px;
+}
+
+.ticket-qr-wrapper {
+  background-color: var(--color-bg);
+  padding: 16px;
+  border-radius: 20px;
+  border: 1px solid var(--color-border);
+  margin-bottom: 12px;
+}
+
+.ticket-id-label {
+  font-size: 0.65rem;
+  color: var(--color-text-light);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.ticket-id {
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-family: monospace;
+  color: var(--color-text-main);
+  letter-spacing: 1px;
+}
+
+.ticket-details-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ticket-detail-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.775rem;
+}
+
+.detail-label {
+  color: var(--color-text-muted);
+}
+
+.detail-val {
+  font-weight: 700;
+  color: var(--color-text-main);
+  text-align: right;
+}
+
+.ticket-footer {
+  padding: 16px 24px 24px;
+  background-color: var(--color-bg);
+  border-top: 1px solid var(--color-border);
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+@media (min-width: 768px) {
+  .banner-content {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .qr-checkin-card {
+    align-self: auto;
+  }
+
+  .quick-nav-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .quick-btn {
+    height: 128px;
+  }
+
+  .appointment-body {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .appointment-time-column {
+    border-top: none;
+    border-left: 1px dashed var(--color-border);
+    padding-top: 0;
+    padding-left: 24px;
+    min-width: 200px;
+  }
+
+  .vitals-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

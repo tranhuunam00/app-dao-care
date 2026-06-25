@@ -1,0 +1,172 @@
+/* ==========================================================================
+   DAO CARE - Baseline Design System (Vanilla CSS)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  /* Color Palette */
+  --color-primary: #059669;       /* DAO CARE Green (Emerald 600) */
+  --color-primary-hover: #047857; /* Emerald 700 */
+  --color-primary-light: #ecfdf5; /* Emerald 50 */
+  --color-primary-border: #bbf7d0; /* Emerald 200 */
+  
+  --color-bg: #f8fafc;            /* Light slate background */
+  --color-surface: #ffffff;       /* Pure white card surface */
+  --color-border: #e2e8f0;        /* Slate 200 */
+  
+  /* Typography Colors */
+  --color-text-main: #1e293b;     /* Slate 800 */
+  --color-text-muted: #64748b;    /* Slate 500 */
+  --color-text-light: #94a3b8;    /* Slate 400 */
+  
+  /* Category Colors */
+  --color-blue: #0284c7;          /* Sky 600 (Medical / Info) */
+  --color-blue-bg: #f0f9ff;
+  --color-blue-border: #bae6fd;
+  
+  --color-rose: #e11d48;          /* Rose 600 (Danger / Attention) */
+  --color-rose-bg: #fff1f2;
+  --color-rose-border: #fecdd3;
+  
+  --color-amber: #d97706;         /* Amber 600 (Warning / Alert) */
+  --color-amber-bg: #fef3c7;
+  --color-amber-border: #fde68a;
+
+  /* Typography Variables */
+  --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  
+  /* Layout Metrics */
+  --sidebar-width: 260px;
+  --header-height: 60px;
+  --bottom-nav-height: 64px;
+}
+
+/* Base resets */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent; /* Remove touch highlight on mobile */
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text-main);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* Scrollbar customization */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ==========================================================================
+   Global Helper Layout Classes
+   ========================================================================== */
+.container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+/* Stepper step content container transitions */
+.step-content {
+  display: none;
+}
+.step-content.active {
+  display: block;
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Overlay and modal base states */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 32px;
+  }
+}
+
+/* ==========================================================================
+   Global Button UI Components
+   ========================================================================== */
+.btn {
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 0.825rem;
+  font-weight: 700;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.btn-muted {
+  background-color: var(--color-bg);
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+}
+
+.btn-muted:hover {
+  background-color: var(--color-border);
+  color: var(--color-text-main);
+}
+
+.btn-dark {
+  background-color: var(--color-text-main);
+  color: white;
+}
+
+.btn-dark:hover {
+  background-color: #0f172a;
+}
+

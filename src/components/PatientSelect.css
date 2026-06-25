@@ -1,0 +1,241 @@
+/* ==========================================================================
+   Patient Selection Component CSS Stylesheet
+   ========================================================================== */
+
+.patient-select-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: radial-gradient(circle at 10% 20%, rgba(5, 150, 105, 0.03) 0%, rgba(248, 250, 252, 1) 90%);
+}
+
+.patient-select-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 28px;
+  padding: 36px;
+  width: 100%;
+  max-width: 680px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.03);
+  animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+}
+
+.patient-select-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.select-logo {
+  width: 50px;
+  height: 50px;
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px;
+}
+
+.select-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  color: var(--color-text-main);
+}
+
+.select-subtitle {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin-top: 6px;
+  line-height: 1.4;
+}
+
+.search-box {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-text-light);
+}
+
+.search-box input {
+  width: 100%;
+  padding: 12px 16px 12px 48px;
+  border-radius: 14px;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-bg);
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.search-box input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  background-color: white;
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.08);
+}
+
+.patients-list-wrapper {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 24px;
+  padding-right: 4px;
+}
+
+/* Custom Scrollbar for patient list */
+.patients-list-wrapper::-webkit-scrollbar {
+  width: 6px;
+}
+.patients-list-wrapper::-webkit-scrollbar-track {
+  background: var(--color-bg);
+  border-radius: 3px;
+}
+.patients-list-wrapper::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+.patients-list-wrapper::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-light);
+}
+
+.patients-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.patient-card-item {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.patient-card-item:hover {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary-light);
+  transform: translateY(-1px);
+}
+
+.patient-card-avatar {
+  width: 44px;
+  height: 44px;
+  background-color: var(--color-bg);
+  color: var(--color-text-muted);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.patient-card-item:hover .patient-card-avatar {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.patient-card-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.patient-card-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+}
+
+.patient-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.patient-code-badge {
+  font-size: 0.65rem;
+  background-color: rgba(0, 0, 0, 0.05);
+  color: var(--color-text-muted);
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+.patient-card-item:hover .patient-code-badge {
+  background-color: rgba(5, 150, 105, 0.15);
+  color: var(--color-primary-hover);
+}
+
+.patient-meta-text {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.patient-card-contact {
+  font-size: 0.75rem;
+  color: var(--color-text-light);
+  display: flex;
+  gap: 16px;
+  margin-top: 4px;
+}
+
+.patient-card-action {
+  color: var(--color-text-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.patient-card-item:hover .action-arrow {
+  color: var(--color-primary);
+  transform: translateX(4px);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.empty-patients {
+  padding: 32px 16px;
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+}
+
+.select-loading {
+  text-align: center;
+  padding: 40px;
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.patient-select-footer {
+  border-top: 1px solid var(--color-border);
+  padding-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.select-logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 10px;
+}
