@@ -6,12 +6,7 @@ import './Dashboard.css';
 export default function Dashboard({ setActiveTab, patient }) {
   const [showTicket, setShowTicket] = useState(false);
   const [upcomingAppointment, setUpcomingAppointment] = useState(null);
-  const [vitals, setVitals] = useState({
-    bloodPressure: '120/80',
-    pulse: '72',
-    weight: '68',
-    bmi: '22.5'
-  });
+  const [vitals, setVitals] = useState(null);
 
   useEffect(() => {
     if (!patient?.id) return;
@@ -53,26 +48,44 @@ export default function Dashboard({ setActiveTab, patient }) {
     apiService.getVisits(patient.id)
       .then(visits => {
         if (visits && visits.length > 0) {
-          // Sort visits by date descending
+          // Find the latest visit with any vitals
           const latestVisit = visits[0];
           
-          let weight = latestVisit.weight || '68';
-          // Calculate mock BMI if height is not available (using height 1.74m)
-          let bmi = '22.5';
-          if (latestVisit.weight) {
-            bmi = (latestVisit.weight / (1.74 * 1.74)).toFixed(1);
+          const weight = latestVisit.weight;
+          const bloodPressure = latestVisit.bloodPressure;
+          const pulse = latestVisit.pulse;
+          
+          if (weight || bloodPressure || pulse) {
+            let bmi = '--';
+            if (weight) {
+              bmi = (weight / (1.74 * 1.74)).toFixed(1);
+            }
+            setVitals({
+              bloodPressure: bloodPressure || '--',
+              pulse: pulse || '--',
+              weight: weight || '--',
+              bmi: bmi
+            });
+          } else {
+            setVitals(null);
           }
-
-          setVitals({
-            bloodPressure: latestVisit.bloodPressure || '120/80',
-            pulse: latestVisit.pulse || '72',
-            weight: weight,
-            bmi: bmi
-          });
+        } else {
+          setVitals(null);
         }
       })
-      .catch(err => console.error('Failed to load vitals from backend:', err));
+      .catch(err => {
+        console.error('Failed to load vitals from backend:', err);
+        setVitals(null);
+      });
   }, [patient]);
+
+  const getBmiStatus = (bmiValue) => {
+    const val = parseFloat(bmiValue);
+    if (isNaN(val)) return 'Chưa có dữ liệu';
+    if (val < 18.5) return 'Thấp';
+    if (val <= 24.9) return 'Cân đối';
+    return 'Thừa cân';
+  };
 
   const getAge = (dobString) => {
     if (!dobString) return '28';
@@ -241,23 +254,43 @@ export default function Dashboard({ setActiveTab, patient }) {
         <div className="vitals-grid">
           <div className="vital-item rose-bg-opacity">
             <span className="vital-label rose-text">Huyết áp</span>
-            <div className="vital-value">{vitals.bloodPressure} <span className="vital-unit">mmHg</span></div>
-            <span className="vital-status green-tag">Bình thường</span>
+            <div className="vital-value">
+              {vitals ? vitals.bloodPressure : '--'}{' '}
+              {vitals && vitals.bloodPressure !== '--' && <span className="vital-unit">mmHg</span>}
+            </div>
+            <span className={`vital-status ${vitals && vitals.bloodPressure !== '--' ? 'green-tag' : 'gray-tag'}`}>
+              {vitals && vitals.bloodPressure !== '--' ? 'Bình thường' : 'Chưa có dữ liệu'}
+            </span>
           </div>
           <div className="vital-item blue-bg-opacity">
             <span className="vital-label blue-text">Nhịp tim</span>
-            <div className="vital-value">{vitals.pulse} <span className="vital-unit">bpm</span></div>
-            <span className="vital-status green-tag">Khỏe mạnh</span>
+            <div className="vital-value">
+              {vitals ? vitals.pulse : '--'}{' '}
+              {vitals && vitals.pulse !== '--' && <span className="vital-unit">bpm</span>}
+            </div>
+            <span className={`vital-status ${vitals && vitals.pulse !== '--' ? 'green-tag' : 'gray-tag'}`}>
+              {vitals && vitals.pulse !== '--' ? 'Khỏe mạnh' : 'Chưa có dữ liệu'}
+            </span>
           </div>
           <div className="vital-item amber-bg-opacity">
             <span className="vital-label amber-text">Cân nặng</span>
-            <div className="vital-value">{vitals.weight} <span className="vital-unit">kg</span></div>
-            <span className="vital-status green-tag">Ổn định</span>
+            <div className="vital-value">
+              {vitals ? vitals.weight : '--'}{' '}
+              {vitals && vitals.weight !== '--' && <span className="vital-unit">kg</span>}
+            </div>
+            <span className={`vital-status ${vitals && vitals.weight !== '--' ? 'green-tag' : 'gray-tag'}`}>
+              {vitals && vitals.weight !== '--' ? 'Ổn định' : 'Chưa có dữ liệu'}
+            </span>
           </div>
           <div className="vital-item green-bg-opacity">
             <span className="vital-label primary-text">Chỉ số BMI</span>
-            <div className="vital-value">{vitals.bmi} <span className="vital-unit">kg/m²</span></div>
-            <span className="vital-status green-tag">Cân đối</span>
+            <div className="vital-value">
+              {vitals ? vitals.bmi : '--'}{' '}
+              {vitals && vitals.bmi !== '--' && <span className="vital-unit">kg/m²</span>}
+            </div>
+            <span className={`vital-status ${vitals && vitals.bmi !== '--' ? 'green-tag' : 'gray-tag'}`}>
+              {vitals && vitals.bmi !== '--' ? getBmiStatus(vitals.bmi) : 'Chưa có dữ liệu'}
+            </span>
           </div>
         </div>
       </div>

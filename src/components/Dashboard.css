@@ -435,6 +435,10 @@
   color: var(--color-primary);
 }
 
+.gray-tag {
+  color: var(--color-text-muted);
+}
+
 .link-btn {
   font-size: 0.75rem;
   font-weight: 700;

@@ -14,10 +14,10 @@ export default function Health({ patient }) {
   ]);
 
   const [metricsInfo, setMetricsInfo] = useState({
-    'huyết áp': { value: '120/80', unit: 'mmHg', date: 'Mặc định', status: 'Bình thường' },
-    'nhịp tim': { value: '72', unit: 'bpm', date: 'Mặc định', status: 'Khỏe mạnh' },
-    'cân nặng': { value: '68', unit: 'kg', date: 'Mặc định', status: 'Bình thường' },
-    'đường huyết': { value: '5.6', unit: 'mmol/L', date: '3 ngày trước', status: 'Bình thường' }
+    'huyết áp': { value: '--', unit: 'mmHg', date: 'Chưa có', status: 'Chưa có dữ liệu' },
+    'nhịp tim': { value: '--', unit: 'bpm', date: 'Chưa có', status: 'Chưa có dữ liệu' },
+    'cân nặng': { value: '--', unit: 'kg', date: 'Chưa có', status: 'Chưa có dữ liệu' },
+    'đường huyết': { value: '--', unit: 'mmol/L', date: 'Chưa có', status: 'Chưa có dữ liệu' }
   });
 
   useEffect(() => {
@@ -25,12 +25,12 @@ export default function Health({ patient }) {
 
     apiService.getVisits(patient.id)
       .then(visits => {
-        setVisitsData(visits);
+        setVisitsData(visits || []);
         if (visits && visits.length > 0) {
           const latest = visits[0];
           
-          let weightVal = latest.weight || '68';
-          let bmiStatus = 'BMI: Cân đối';
+          let weightVal = latest.weight || '--';
+          let bmiStatus = 'Chưa có dữ liệu';
           if (latest.weight) {
             const bmi = (latest.weight / (1.74 * 1.74)).toFixed(1);
             bmiStatus = `BMI: ${bmi} - Cân đối`;
@@ -38,16 +38,16 @@ export default function Health({ patient }) {
 
           setMetricsInfo({
             'huyết áp': { 
-              value: latest.bloodPressure || '120/80', 
+              value: latest.bloodPressure || '--', 
               unit: 'mmHg', 
               date: new Date(latest.createdAt).toLocaleDateString('vi-VN'), 
-              status: 'Bình thường' 
+              status: latest.bloodPressure ? 'Bình thường' : 'Chưa có dữ liệu'
             },
             'nhịp tim': { 
-              value: latest.pulse?.toString() || '72', 
+              value: latest.pulse?.toString() || '--', 
               unit: 'bpm', 
               date: new Date(latest.createdAt).toLocaleDateString('vi-VN'), 
-              status: 'Khỏe mạnh' 
+              status: latest.pulse ? 'Khỏe mạnh' : 'Chưa có dữ liệu'
             },
             'cân nặng': { 
               value: weightVal.toString(), 
@@ -56,11 +56,18 @@ export default function Health({ patient }) {
               status: bmiStatus 
             },
             'đường huyết': { 
-              value: '5.6', 
+              value: '--', 
               unit: 'mmol/L', 
-              date: '3 ngày trước', 
-              status: 'Bình thường' 
+              date: 'Chưa có', 
+              status: 'Chưa có dữ liệu' 
             }
+          });
+        } else {
+          setMetricsInfo({
+            'huyết áp': { value: '--', unit: 'mmHg', date: 'Chưa có', status: 'Chưa có dữ liệu' },
+            'nhịp tim': { value: '--', unit: 'bpm', date: 'Chưa có', status: 'Chưa có dữ liệu' },
+            'cân nặng': { value: '--', unit: 'kg', date: 'Chưa có', status: 'Chưa có dữ liệu' },
+            'đường huyết': { value: '--', unit: 'mmol/L', date: 'Chưa có', status: 'Chưa có dữ liệu' }
           });
         }
         setIsLoading(false);
@@ -167,7 +174,15 @@ export default function Health({ patient }) {
 
         {/* SVG Chart Render */}
         <div className="svg-chart-container">
-          <svg className="chart-svg" viewBox="0 0 500 150">
+          {visitsData.length === 0 && (
+            <div className="chart-empty-overlay flex-center flex-column">
+              <span style={{ fontSize: '1.5rem', marginBottom: '0.25rem' }}>📊</span>
+              <p style={{ fontSize: '0.7rem', color: 'var(--color-text-muted)', fontWeight: '600' }}>
+                Chưa có dữ liệu lịch sử đo chỉ số
+              </p>
+            </div>
+          )}
+          <svg className="chart-svg" viewBox="0 0 500 150" style={{ opacity: visitsData.length === 0 ? 0.15 : 1 }}>
             {/* Grid helper lines */}
             <line x1="40" y1="20" x2="480" y2="20" stroke="#f1f5f9" strokeWidth="1.5" />
             <line x1="40" y1="60" x2="480" y2="60" stroke="#f1f5f9" strokeWidth="1.5" />
