@@ -181,6 +181,10 @@ export default function Booking({ setActiveTab, patient }) {
     return b ? b.name : 'Chi nhánh đã chọn';
   };
 
+  const getSelectedBranch = () => {
+    return branchesList.find(x => x.id === selectedBranchId);
+  };
+
   const getSelectedServiceName = () => {
     const s = servicesList.find(x => x.id === selectedServiceId);
     const sp = specialtiesList.find(x => x.id === selectedSpecialtyId);
@@ -251,7 +255,22 @@ export default function Booking({ setActiveTab, patient }) {
                 />
                 <div className="option-details">
                   <span className="option-title">{b.name}</span>
-                  <p className="option-desc">{b.addressDetail ? `${b.addressDetail}, ${b.province || ''}` : 'Số 1 Đại Cồ Việt, Hai Bà Trưng, Hà Nội'}</p>
+                  <p className="option-desc">
+                    {b.googleMapUrl ? (
+                      <a 
+                        href={b.googleMapUrl} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="map-link"
+                        onClick={(e) => e.stopPropagation()} 
+                        style={{ color: '#10b981', textDecoration: 'underline', fontWeight: '500' }}
+                      >
+                        {b.addressDetail ? `${b.addressDetail}, ${b.province || ''}` : 'Số 1 Đại Cồ Việt, Hai Bà Trưng, Hà Nội'}
+                      </a>
+                    ) : (
+                      b.addressDetail ? `${b.addressDetail}, ${b.province || ''}` : 'Số 1 Đại Cồ Việt, Hai Bà Trưng, Hà Nội'
+                    )}
+                  </p>
                   <span className="badge badge-green flex-align gap-1"><MapPin size={10} /> Chi nhánh chính - Có bãi đỗ xe</span>
                 </div>
               </label>
@@ -416,7 +435,20 @@ export default function Booking({ setActiveTab, patient }) {
               </div>
               <div className="summary-row">
                 <span className="row-label">Cơ sở y tế:</span>
-                <span className="row-value">{getSelectedBranchName()}</span>
+                <span className="row-value">
+                  {getSelectedBranch()?.googleMapUrl ? (
+                    <a 
+                      href={getSelectedBranch().googleMapUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      style={{ color: '#10b981', textDecoration: 'underline', fontWeight: '500' }}
+                    >
+                      {getSelectedBranchName()}
+                    </a>
+                  ) : (
+                    getSelectedBranchName()
+                  )}
+                </span>
               </div>
               <div className="summary-row">
                 <span className="row-label">Chuyên khoa & Dịch vụ:</span>

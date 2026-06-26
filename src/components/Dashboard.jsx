@@ -205,7 +205,18 @@ export default function Dashboard({ setActiveTab, patient }) {
                 <p className="doctor-spec">Chuyên khoa: {upcomingAppointment.service?.name || 'Nội khoa'}</p>
                 <div className="doctor-loc flex-align gap-1">
                   <MapPin size={14} />
-                  <span>{upcomingAppointment.branch?.name || 'Chi nhánh DAO CARE Hà Nội'}</span>
+                  {upcomingAppointment.branch?.googleMapUrl ? (
+                    <a 
+                      href={upcomingAppointment.branch.googleMapUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      style={{ color: '#10b981', textDecoration: 'underline' }}
+                    >
+                      {upcomingAppointment.branch?.name || 'Chi nhánh DAO CARE Hà Nội'}
+                    </a>
+                  ) : (
+                    <span>{upcomingAppointment.branch?.name || 'Chi nhánh DAO CARE Hà Nội'}</span>
+                  )}
                 </div>
               </div>
             </div>
@@ -327,7 +338,21 @@ export default function Dashboard({ setActiveTab, patient }) {
                 </div>
                 <div className="ticket-detail-item">
                   <span className="detail-label">Địa điểm:</span>
-                  <span className="detail-val">{upcomingAppointment.branch?.name} ({upcomingAppointment.room?.name || 'P. Khám'})</span>
+                  <span className="detail-val">
+                    {upcomingAppointment.branch?.googleMapUrl ? (
+                      <a 
+                        href={upcomingAppointment.branch.googleMapUrl} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        style={{ color: '#10b981', textDecoration: 'underline' }}
+                      >
+                        {upcomingAppointment.branch?.name}
+                      </a>
+                    ) : (
+                      upcomingAppointment.branch?.name
+                    )}{' '}
+                    ({upcomingAppointment.room?.name || 'P. Khám'})
+                  </span>
                 </div>
                 <div className="ticket-detail-item">
                   <span className="detail-label">Thời gian:</span>
