@@ -297,6 +297,13 @@ export default function Booking({ setActiveTab, patient }) {
                     onChange={(e) => setSelectedSpecialtyId(e.target.value)}
                     className="hidden-input"
                   />
+                  {spec.iconUrl && (
+                    <img 
+                      src={spec.iconUrl} 
+                      alt={spec.name} 
+                      style={{ width: '20px', height: '20px', objectFit: 'cover', borderRadius: '4px', marginRight: '6px' }} 
+                    />
+                  )}
                   <span>{spec.name}</span>
                 </label>
               ))}
