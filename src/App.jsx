@@ -6,6 +6,7 @@ import Records from './components/Records';
 import Health from './components/Health';
 import Login from './components/Login';
 import PatientSelect from './components/PatientSelect';
+import Profile from './components/Profile';
 import { apiService } from './services/api';
 
 function App() {
@@ -53,6 +54,24 @@ function App() {
     setPatient(selectedPatient);
   };
 
+  const handlePatientUpdate = (updatedPatient) => {
+    localStorage.setItem('selected_patient', JSON.stringify(updatedPatient));
+    setPatient(updatedPatient);
+
+    const profilesRaw = localStorage.getItem('patient_profiles');
+    if (profilesRaw) {
+      try {
+        const profiles = JSON.parse(profilesRaw);
+        if (Array.isArray(profiles)) {
+          const updatedProfiles = profiles.map(p => p.id === updatedPatient.id ? updatedPatient : p);
+          localStorage.setItem('patient_profiles', JSON.stringify(updatedProfiles));
+        }
+      } catch (e) {
+        console.warn('Failed to update patient profiles list in storage:', e);
+      }
+    }
+  };
+
   const handleLogout = () => {
     apiService.clearPatientSession();
     setToken(null);
@@ -74,6 +93,7 @@ function App() {
       {activeTab === 'booking' && <Booking setActiveTab={setActiveTab} patient={patient} />}
       {activeTab === 'records' && <Records patient={patient} />}
       {activeTab === 'health' && <Health patient={patient} />}
+      {activeTab === 'profile' && <Profile patient={patient} onPatientUpdate={handlePatientUpdate} />}
     </Layout>
   );
 }

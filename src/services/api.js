@@ -6,6 +6,29 @@ const PATIENT_REFRESH_TOKEN_KEY = 'patient_refresh_token';
 const PATIENT_PROFILES_KEY = 'patient_profiles';
 const SELECTED_PATIENT_KEY = 'selected_patient';
 
+// Convert YYYY-MM-DD to DD/MM/YYYY
+export function formatDbDateToDisplay(dbDate) {
+  if (!dbDate) return '';
+  // Handle full ISO strings just in case
+  const dateOnly = dbDate.includes('T') ? dbDate.split('T')[0] : dbDate;
+  const parts = dateOnly.split('-');
+  if (parts.length === 3) {
+    return `${parts[2]}/${parts[1]}/${parts[0]}`;
+  }
+  return dbDate;
+}
+
+// Convert DD/MM/YYYY to YYYY-MM-DD
+export function formatDisplayDateToDb(displayDate) {
+  if (!displayDate) return '';
+  const parts = displayDate.split('/');
+  if (parts.length === 3) {
+    return `${parts[2]}-${parts[1]}-${parts[0]}`;
+  }
+  return displayDate;
+}
+
+
 // Get auth token directly from localStorage
 function getAuthToken() {
   return localStorage.getItem(PATIENT_TOKEN_KEY);
@@ -223,6 +246,14 @@ export const apiService = {
   createPatient: async (patientDto) => {
     return await apiFetch('/patients', {
       method: 'POST',
+      body: JSON.stringify(patientDto),
+    });
+  },
+
+  // Update patient profile
+  updatePatient: async (patientId, patientDto) => {
+    return await apiFetch(`/patients/${patientId}`, {
+      method: 'PUT',
       body: JSON.stringify(patientDto),
     });
   },

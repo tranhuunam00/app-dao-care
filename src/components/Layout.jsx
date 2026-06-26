@@ -1,5 +1,5 @@
 import React from 'react';
-import { Activity, Home, Calendar, FileText, Heart, Bell, LogOut } from 'lucide-react';
+import { Activity, Home, Calendar, FileText, Heart, Bell, LogOut, User } from 'lucide-react';
 import './Layout.css';
 
 export default function Layout({ activeTab, setActiveTab, patient, onLogout, children }) {
@@ -17,7 +17,7 @@ export default function Layout({ activeTab, setActiveTab, patient, onLogout, chi
           </div>
         </div>
 
-        <div className="patient-quick-card">
+        <div className="patient-quick-card clickable" onClick={() => setActiveTab('profile')}>
           <div className="patient-avatar-badge">
             {patient?.fullName ? patient.fullName.split(' ').pop().substring(0, 2).toUpperCase() : 'BN'}
           </div>
@@ -56,6 +56,13 @@ export default function Layout({ activeTab, setActiveTab, patient, onLogout, chi
             <Heart size={20} />
             <span>Sổ tay sức khỏe</span>
           </button>
+          <button 
+            onClick={() => setActiveTab('profile')} 
+            className={`nav-btn ${activeTab === 'profile' ? 'active' : ''}`}
+          >
+            <User size={20} />
+            <span>Hồ sơ của tôi</span>
+          </button>
         </nav>
 
         <div className="sidebar-footer">
@@ -82,7 +89,7 @@ export default function Layout({ activeTab, setActiveTab, patient, onLogout, chi
           <button className="notification-trigger" onClick={onLogout} aria-label="Đăng xuất" style={{ color: 'var(--color-rose)' }}>
             <LogOut size={18} />
           </button>
-          <div className="patient-avatar-mini">
+          <div className="patient-avatar-mini clickable" onClick={() => setActiveTab('profile')}>
             {patient?.fullName ? patient.fullName.split(' ').pop().substring(0, 2).toUpperCase() : 'BN'}
           </div>
         </div>
@@ -124,6 +131,13 @@ export default function Layout({ activeTab, setActiveTab, patient, onLogout, chi
         >
           <Heart size={22} />
           <span>Sổ tay</span>
+        </button>
+        <button 
+          onClick={() => setActiveTab('profile')} 
+          className={`bottom-nav-btn ${activeTab === 'profile' ? 'active' : ''}`}
+        >
+          <User size={22} />
+          <span>Cá nhân</span>
         </button>
       </nav>
     </div>

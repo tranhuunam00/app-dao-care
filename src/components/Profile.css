@@ -1,0 +1,257 @@
+/* ==========================================================================
+   Patient Profile Styles
+   ========================================================================== */
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.profile-header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.profile-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+}
+
+.profile-subtitle {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  margin-top: 4px;
+}
+
+.profile-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  padding: 32px;
+}
+
+.profile-form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 768px) {
+  .profile-form-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .full-width-col {
+    grid-column: span 2;
+  }
+}
+
+/* Form Groups & Inputs */
+.profile-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.profile-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+}
+
+.profile-input, 
+.profile-select {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1.5px solid var(--color-border);
+  background-color: var(--color-bg);
+  color: var(--color-text-main);
+  font-family: inherit;
+  font-size: 0.925rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.profile-input:hover,
+.profile-select:hover {
+  border-color: var(--color-primary-light);
+}
+
+.profile-input:focus,
+.profile-select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  background-color: var(--color-surface);
+  box-shadow: 0 0 0 4px rgba(5, 150, 105, 0.1);
+}
+
+.profile-input:disabled,
+.profile-select:disabled {
+  background-color: var(--color-border);
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+}
+
+/* Specific Section Divider */
+.profile-section-divider {
+  grid-column: 1 / -1;
+  margin: 24px 0 8px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.divider-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.divider-line {
+  flex: 1;
+  height: 1px;
+  background-color: var(--color-border);
+}
+
+/* Alert Banner */
+.profile-alert {
+  padding: 14px 20px;
+  border-radius: 12px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.profile-alert-success {
+  background-color: var(--color-primary-light);
+  color: var(--color-primary-dark);
+  border: 1px solid rgba(5, 150, 105, 0.2);
+}
+
+.profile-alert-error {
+  background-color: var(--color-rose-bg);
+  color: var(--color-rose);
+  border: 1px solid rgba(244, 63, 94, 0.2);
+}
+
+/* Action Footer */
+.profile-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.profile-btn-save {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  background-color: var(--color-primary);
+  color: white;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.2);
+  cursor: pointer;
+  border: none;
+}
+
+.profile-btn-save:hover {
+  background-color: var(--color-primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(5, 150, 105, 0.3);
+}
+
+.profile-btn-save:active {
+  transform: translateY(0);
+}
+
+.profile-btn-save:disabled {
+  background-color: var(--color-text-muted);
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/* Helper Badge */
+.profile-badge-note {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  background-color: var(--color-bg);
+  padding: 10px 16px;
+  border-radius: 8px;
+  border-left: 3px solid var(--color-primary);
+  margin-top: 4px;
+}
+
+/* Custom Checkbox Toggle for Guardian Info */
+.guardian-toggle-card {
+  grid-column: 1 / -1;
+  background-color: var(--color-bg);
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease;
+}
+
+.guardian-toggle-card:hover {
+  border-color: var(--color-primary-light);
+}
+
+.guardian-checkbox {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  border: 2px solid var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.guardian-checkbox.checked {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: white;
+}

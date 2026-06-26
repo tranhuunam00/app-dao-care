@@ -325,3 +325,18 @@
     width: 100%;
   }
 }
+
+.clickable {
+  cursor: pointer;
+}
+
+.patient-quick-card.clickable:hover {
+  border-color: var(--color-primary);
+  background-color: var(--color-surface);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+}
+
+.patient-avatar-mini.clickable:hover {
+  transform: scale(1.05);
+}
