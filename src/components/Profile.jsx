@@ -85,6 +85,9 @@ export default function Profile({ patient, onPatientUpdate }) {
     }
   };
 
+  const isGoogleIncomplete = patient?.phone?.startsWith('GOOGLE-') || patient?.dob === '1900-01-01';
+  const isProfileComplete = !isGoogleIncomplete && !!patient?.fullName;
+
   return (
     <div className="profile-container">
       <div className="profile-header-section">
@@ -109,6 +112,13 @@ export default function Profile({ patient, onPatientUpdate }) {
           </div>
         )}
 
+        {isProfileComplete && (
+          <div className="profile-info-notice mb-4">
+            <AlertCircle size={16} style={{ flexShrink: 0, marginTop: '2px', color: 'var(--color-primary)' }} />
+            <span>Thông tin hành chính (Họ tên, Ngày sinh, Giới tính) đã được xác minh. Để điều chỉnh các thông tin này, vui lòng liên hệ trực tiếp quầy Lễ tân phòng khám.</span>
+          </div>
+        )}
+
         <form onSubmit={handleSubmit} className="profile-form-grid">
           
           {/* Full Name */}
@@ -124,7 +134,7 @@ export default function Profile({ patient, onPatientUpdate }) {
                 onChange={(e) => setFullName(e.target.value)}
                 placeholder="NGUYỄN VĂN A"
                 required
-                disabled={loading}
+                disabled={loading || isProfileComplete}
               />
             </div>
           </div>
@@ -159,7 +169,7 @@ export default function Profile({ patient, onPatientUpdate }) {
               value={dob}
               onChange={(e) => setDob(e.target.value)}
               required
-              disabled={loading}
+              disabled={loading || isProfileComplete}
             />
             {dob === '1900-01-01' && (
               <span className="profile-badge-note">
@@ -176,7 +186,7 @@ export default function Profile({ patient, onPatientUpdate }) {
               className="profile-select"
               value={gender}
               onChange={(e) => setGender(e.target.value)}
-              disabled={loading}
+              disabled={loading || isProfileComplete}
             >
               <option value="MALE">Nam</option>
               <option value="FEMALE">Nữ</option>
@@ -194,8 +204,13 @@ export default function Profile({ patient, onPatientUpdate }) {
               value={cccd}
               onChange={(e) => setCccd(e.target.value)}
               placeholder="Căn cước công dân 12 số"
-              disabled={loading}
+              disabled={loading || (isProfileComplete && !!patient?.cccd)}
             />
+            {isProfileComplete && !!patient?.cccd && (
+              <span style={{ fontSize: '0.7rem', color: 'var(--color-text-muted)', marginTop: '2px' }}>
+                Số CCCD đã xác thực, không thể tự chỉnh sửa.
+              </span>
+            )}
           </div>
 
           {/* Email */}

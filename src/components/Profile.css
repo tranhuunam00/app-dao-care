@@ -255,3 +255,16 @@
   border-color: var(--color-primary);
   color: white;
 }
+
+.profile-info-notice {
+  padding: 12px 16px;
+  background-color: var(--color-bg);
+  border: 1px dashed var(--color-border);
+  border-radius: 12px;
+  font-size: 0.825rem;
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
